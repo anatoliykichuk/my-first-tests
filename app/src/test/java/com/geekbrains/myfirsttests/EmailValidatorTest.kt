@@ -11,10 +11,17 @@ class EmailValidatorTest {
     fun emailValidator_CorrectEmailSimple_ReturnsTrue() {
         assertTrue(EmailValidator.isValidEmail("name@email.com"))
     }
+
     @Test
     fun emailValidator_CorrectEmailSubDomain_ReturnsTrue() {
         assertTrue(EmailValidator.isValidEmail("name@email.co.uk"))
     }
+
+    @Test
+    fun emailValidator_DomainAsNumber_ReturnsTrue() {
+        assertTrue(EmailValidator.isValidEmail("email@mail.123"))
+    }
+
     @Test
     fun emailValidator_InvalidEmailNoTld_ReturnsFalse() {
         assertFalse(EmailValidator.isValidEmail("name@email"))
@@ -23,10 +30,12 @@ class EmailValidatorTest {
     fun emailValidator_InvalidEmailDoubleDot_ReturnsFalse() {
         assertFalse(EmailValidator.isValidEmail("name@email..com"))
     }
+
     @Test
     fun emailValidator_InvalidEmailNoUsername_ReturnsFalse() {
         assertFalse(EmailValidator.isValidEmail("@email.com"))
     }
+
     @Test
     fun emailValidator_EmptyString_ReturnsFalse() {
         assertFalse(EmailValidator.isValidEmail(""))
